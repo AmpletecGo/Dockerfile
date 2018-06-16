@@ -1,7 +1,7 @@
 FROM centos:7
 
 # 1. 安装基本依赖
-RUN yum update -y && yum install epel-release -y && yum update -y && yum install wget unzip epel-release sqlite-devel xz gcc automake autoconf libtool make zlib-devel openssl-devel supervisor -y
+RUN yum update -y && yum install epel-release -y && yum update -y && yum install wget unzip epel-release redis sqlite-devel xz gcc automake autoconf libtool make zlib-devel openssl-devel supervisor -y
 WORKDIR /opt/
 
 # 2. 准备python
