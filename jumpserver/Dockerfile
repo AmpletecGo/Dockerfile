@@ -21,9 +21,9 @@ RUN source /opt/py3/bin/activate && pip install --upgrade pip && pip install -r 
 
 VOLUME /opt/jumpserver/data
 
-COPY jumpserver_supervisord.conf /etc/supervisord.conf
-COPY jumpserver_conf.py /opt/jumpserver/config.py
-COPY jumpserver_entrypoint.sh /bin/entrypoint.sh
+COPY supervisord.conf /etc/supervisord.conf
+COPY config.py /opt/jumpserver/config.py
+COPY entrypoint.sh /bin/entrypoint.sh
 RUN chmod +x /bin/entrypoint.sh
 
 ENV REDIS_HOST=127.0.0.1 REDIS_PORT=6379
