@@ -1,7 +1,7 @@
 FROM jumpserver/python:v3.6.1
 MAINTAINER ArYing Cosmos <rj05116@163.com>
 
-RUN yum -y install epel-release && yum clean all -y
+RUN yum update -y && yum install epel-release -y && yum update -y && yum install wget unzip epel-release supervisor -y
 WORKDIR /opt/
 
 # 3. 下载包并解压
