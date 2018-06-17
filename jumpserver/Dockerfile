@@ -12,7 +12,7 @@ RUN unzip jumpserver.zip && mv jumpserver-master jumpserver
 RUN yum -y install $(cat /opt/jumpserver/requirements/rpm_requirements.txt)
 
 # 5. 安装pip依赖
-RUN source /opt/py3/bin/activate && pip install --upgrade pip && pip install -r /opt/jumpserver/requirements/requirements.txt
+RUN pip install --upgrade pip && pip install -r /opt/jumpserver/requirements/requirements.txt
 
 VOLUME /opt/jumpserver/data
 
