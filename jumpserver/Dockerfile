@@ -1,13 +1,8 @@
-FROM centos:7
+FROM jumpserver/python:v3.6.1
+MAINTAINER ArYing Cosmos <rj05116@163.com>
 
-# 1. 安装基本依赖
-RUN yum update -y && yum install epel-release -y && yum update -y && yum install wget unzip epel-release nginx sqlite-devel xz gcc automake zlib-devel openssl-devel redis mariadb mariadb-devel mariadb-server supervisor -y
+RUN yum -y install epel-release && yum clean all -y
 WORKDIR /opt/
-
-# 2. 准备python
-RUN wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz -O /opt/Python-3.6.1.tar.xz
-RUN tar xf Python-3.6.1.tar.xz  && cd Python-3.6.1 && ./configure && make && make install
-RUN python3 -m venv py3
 
 # 3. 下载包并解压
 RUN wget https://github.com/jumpserver/jumpserver/archive/master.zip -O /opt/jumpserver.zip
@@ -24,9 +19,8 @@ VOLUME /opt/jumpserver/data
 COPY supervisord.conf /etc/supervisord.conf
 COPY config.py /opt/jumpserver/config.py
 COPY entrypoint.sh /bin/entrypoint.sh
+
 RUN chmod +x /bin/entrypoint.sh
 
-ENV REDIS_HOST=127.0.0.1 REDIS_PORT=6379
-
-EXPOSE 2222 80
+EXPOSE 8080
 ENTRYPOINT ["entrypoint.sh"]
