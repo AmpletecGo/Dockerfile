@@ -1,7 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 #
 
-source /opt/py3/bin/activate
+export LANG=zh_CN.UTF-8
+
+source /usr/local/lib/python3.6
 
 function make_migrations(){
     cd /opt/jumpserver/utils
@@ -21,7 +23,9 @@ function make_migrations_if_need(){
 
 function start() {
     make_migrations_if_need
-    supervisord
+
+    cd /opt/jumpserver
+    python run_server.py
 }
 
 
